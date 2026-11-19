@@ -1,0 +1,1300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICC Cricket World</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #071b17;
+    color: white;
+}
+
+header {
+    background: #03110e;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #00e676;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+}
+
+nav a:hover {
+    color: #00e676;
+}
+
+.hero {
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    padding: 8%;
+    background:
+    linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.4)),
+    url("https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1600")
+    center/cover;
+}
+
+.hero h1 {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    line-height: 1.7;
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #00e676;
+    color: #03110e;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+section {
+    padding: 60px 7%;
+}
+
+.heading {
+    text-align: center;
+    color: #00e676;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+/* TEAM SELECTION */
+
+.team-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 22px;
+}
+
+.team-card {
+    background: #102b24;
+    border: 1px solid #285344;
+    padding: 28px;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.team-card:hover {
+    transform: translateY(-7px);
+    border-color: #00e676;
+    box-shadow: 0 5px 20px rgba(0,230,118,.15);
+}
+
+.flag {
+    font-size: 50px;
+}
+
+.team-card h2 {
+    color: #00e676;
+    margin: 15px 0;
+}
+
+.team-card p {
+    color: #c5d9d0;
+    margin-bottom: 15px;
+}
+
+/* SQUAD SECTION */
+
+.squad-section {
+    background: #0b241d;
+    min-height: 500px;
+}
+
+.team-banner {
+    background: #102b24;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+    border: 1px solid #285344;
+}
+
+.team-banner .big-flag {
+    font-size: 55px;
+}
+
+.team-banner h2 {
+    color: #00e676;
+    margin: 12px;
+}
+
+.back-btn {
+    background: #294b3e;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 25px;
+}
+
+.squad-tools {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.squad-tools input {
+    width: 300px;
+    max-width: 100%;
+    padding: 13px;
+    border-radius: 5px;
+    border: none;
+}
+
+.player-count {
+    text-align: center;
+    color: #b8d0c5;
+    margin-bottom: 25px;
+}
+
+/* PLAYER CARDS */
+
+.player-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
+    gap: 22px;
+}
+
+.player-card {
+    background: #102b24;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #285344;
+    text-align: center;
+    transition: .3s;
+}
+
+.player-card:hover {
+    transform: translateY(-6px);
+    border-color: #00e676;
+}
+
+.player-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    background: #1c4033;
+}
+
+.player-card h3 {
+    color: #00e676;
+    font-size: 17px;
+    margin: 13px 5px;
+}
+
+.player-card p {
+    color: #c5d9d0;
+    font-size: 13px;
+}
+
+.captain {
+    color: #ffd54f !important;
+    margin: 8px;
+    font-weight: bold;
+}
+
+.explore-btn {
+    background: #00e676;
+    color: #03110e;
+    padding: 10px 17px;
+    border: none;
+    border-radius: 5px;
+    margin: 15px 0;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* PLAYER POPUP */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background: rgba(0,0,0,.88);
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.modal-content {
+    background: #102b24;
+    border: 1px solid #00e676;
+    border-radius: 12px;
+    padding: 25px;
+    width: 500px;
+    max-width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    text-align: center;
+    position: relative;
+}
+
+.modal-content img {
+    width: 180px;
+    height: 180px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin: 20px auto;
+}
+
+.modal-content h2 {
+    color: #00e676;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    line-height: 1.8;
+    margin: 12px 0;
+    color: #d5e8df;
+}
+
+.close {
+    position: absolute;
+    right: 18px;
+    top: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* OTHER SECTIONS */
+
+.matches {
+    background: #071b17;
+}
+
+.match-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+    gap: 20px;
+}
+
+.match-card {
+    background: #102b24;
+    padding: 25px;
+    border-left: 4px solid #00e676;
+    border-radius: 8px;
+}
+
+.match-card h3 {
+    color: #00e676;
+    margin-bottom: 15px;
+}
+
+.match-card p {
+    line-height: 1.8;
+}
+
+.match-card a {
+    color: #00e676;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.importance p {
+    background: #102b24;
+    padding: 30px;
+    border-radius: 10px;
+    line-height: 2;
+    text-align: center;
+}
+
+.booking {
+    background: #0b241d;
+}
+
+form {
+    max-width: 550px;
+    margin: auto;
+    background: #102b24;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+form label {
+    display: block;
+    margin-top: 15px;
+    color: #00e676;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 13px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 5px;
+}
+
+form button {
+    width: 100%;
+    margin-top: 25px;
+}
+
+#confirmation {
+    max-width: 550px;
+    margin: 20px auto;
+    text-align: center;
+    color: #00e676;
+    line-height: 1.8;
+}
+
+footer {
+    background: #020c09;
+    padding: 30px;
+    text-align: center;
+    line-height: 2;
+    color: #aaa;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media(max-width:600px) {
+    header {
+        flex-direction: column;
+    }
+
+    nav {
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    section {
+        padding: 40px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+    <div class="logo">🏏 ICC CRICKET WORLD</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#teams">Teams</a>
+        <a href="#matches">Matches</a>
+        <a href="#booking">Tickets</a>
+    </nav>
+</header>
+
+<!-- HOME PAGE -->
+
+<section class="hero" id="home">
+    <div>
+        <h1>WELCOME TO ICC CRICKET WORLD</h1>
+
+        <p>
+            Discover 12 International Cricket Teams,
+            their complete squads, star players
+            and cricket profiles.
+        </p>
+
+        <a href="#teams" class="btn">Explore Teams</a>
+    </div>
+</section>
+
+<!-- TEAM SELECTION PAGE -->
+
+<section id="teams">
+
+    <h1 class="heading">INTERNATIONAL CRICKET TEAMS</h1>
+
+    <p style="text-align:center;margin-bottom:30px;color:#bbb">
+        Select a country to view its complete squad.
+    </p>
+
+    <div class="team-container" id="teamContainer"></div>
+
+</section>
+
+<!-- SEPARATE TEAM SQUAD PAGE -->
+
+<section class="squad-section hidden" id="squadPage">
+
+    <button class="back-btn" onclick="backToTeams()">
+        ← Back to All Teams
+    </button>
+
+    <div class="team-banner">
+
+        <div class="big-flag" id="teamFlag"></div>
+
+        <h2 id="teamName"></h2>
+
+        <p>International Cricket Team – Full Squad</p>
+
+    </div>
+
+    <h1 class="heading">TEAM SQUAD MEMBERS</h1>
+
+    <div class="squad-tools">
+
+        <input
+            type="text"
+            id="playerSearch"
+            placeholder="Search players in this team..."
+        >
+
+    </div>
+
+    <p class="player-count" id="playerCount"></p>
+
+    <div class="player-container" id="playerContainer"></div>
+
+    <p style="text-align:center;margin-top:30px">
+        <a href="https://www.icc-cricket.com/" target="_blank"
+           rel="noopener" class="btn">
+            Visit Official ICC Website
+        </a>
+    </p>
+
+</section>
+
+<!-- PLAYER DETAILS POPUP -->
+
+<div class="modal" id="playerModal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <img id="modalImage" src="" alt="Player photo">
+
+        <h2 id="modalName"></h2>
+
+        <p id="modalTeam"></p>
+
+        <p id="modalDescription">Loading profile...</p>
+
+        <a id="wikiLink" href="#" target="_blank"
+           rel="noopener" class="btn">
+            Explore Full Player Profile
+        </a>
+
+    </div>
+
+</div>
+
+<!-- UPCOMING MATCHES -->
+
+<section class="matches" id="matches">
+
+    <h1 class="heading">UPCOMING MATCHES</h1>
+
+    <div class="match-container">
+
+        <div class="match-card">
+            <h3>International Cricket</h3>
+            <p>Check upcoming international matches and schedules.</p>
+            <a href="https://www.icc-cricket.com/fixtures-results"
+               target="_blank" rel="noopener">
+                View ICC Fixtures →
+            </a>
+        </div>
+
+        <div class="match-card">
+            <h3>ICC Tournaments</h3>
+            <p>Explore ICC international tournaments and results.</p>
+            <a href="https://www.icc-cricket.com/"
+               target="_blank" rel="noopener">
+                Visit ICC →
+            </a>
+        </div>
+
+        <div class="match-card">
+            <h3>Match Tickets</h3>
+            <p>Check official ticket availability and booking details.</p>
+            <a href="https://www.icc-cricket.com/tickets"
+               target="_blank" rel="noopener">
+                Official Ticket Information →
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- IMPORTANCE OF SPORTS -->
+
+<section class="importance">
+
+    <h1 class="heading">IMPORTANCE OF SPORTS</h1>
+
+    <p>
+        Sports play an important role in our daily lives.
+        Cricket teaches teamwork, discipline, leadership
+        and sportsmanship. It improves physical fitness,
+        mental strength and confidence. Sports also bring
+        people from different countries and cultures together.
+    </p>
+
+</section>
+
+<!-- TICKET BOOKING -->
+
+<section class="booking" id="booking">
+
+    <h1 class="heading">BOOK YOUR MATCH TICKETS</h1>
+
+    <form id="bookingForm">
+
+        <label>Full Name</label>
+        <input type="text" id="name" required
+        placeholder="Enter your name">
+
+        <label>Email Address</label>
+        <input type="email" id="email" required
+        placeholder="Enter your email">
+
+        <label>Phone Number</label>
+        <input type="tel" id="phone" required
+        pattern="[0-9]{10}"
+        placeholder="Enter 10 digit number">
+
+        <label>Select Match</label>
+
+        <select id="match" required>
+            <option value="">Select Match</option>
+            <option>International Cricket Match</option>
+            <option>ICC Tournament Match</option>
+        </select>
+
+        <label>Number of Tickets</label>
+        <input type="number" id="quantity"
+        min="1" max="10" value="1" required>
+
+        <button type="submit" class="btn">
+            Confirm Booking
+        </button>
+
+    </form>
+
+    <div id="confirmation"></div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    <h3>🏏 ICC CRICKET WORLD</h3>
+    <p>Cricket Unites the World 🌍</p>
+    <p>© 2026 ICC Cricket World. Independent educational project.</p>
+</footer>
+
+<script>
+
+/* ========================================
+   COMPLETE 12 TEAM SQUAD INFORMATION
+   ICC MEN'S T20 WORLD CUP 2026 REFERENCE
+======================================== */
+
+const teams = {
+
+    "India": {
+        flag: "🇮🇳",
+        players: [
+            "Suryakumar Yadav",
+            "Abhishek Sharma",
+            "Tilak Varma",
+            "Sanju Samson",
+            "Shivam Dube",
+            "Ishan Kishan",
+            "Hardik Pandya",
+            "Arshdeep Singh",
+            "Jasprit Bumrah",
+            "Mohammed Siraj",
+            "Varun Chakaravarthy",
+            "Kuldeep Yadav",
+            "Axar Patel",
+            "Washington Sundar",
+            "Rinku Singh"
+        ],
+        captain: "Suryakumar Yadav"
+    },
+
+    "Australia": {
+        flag: "🇦🇺",
+        players: [
+            "Mitchell Marsh",
+            "Xavier Bartlett",
+            "Cooper Connolly",
+            "Tim David",
+            "Ben Dwarshuis",
+            "Cameron Green",
+            "Nathan Ellis",
+            "Travis Head",
+            "Josh Inglis",
+            "Matthew Kuhnemann",
+            "Glenn Maxwell",
+            "Matthew Renshaw",
+            "Marcus Stoinis",
+            "Adam Zampa",
+            "Steve Smith"
+        ],
+        captain: "Mitchell Marsh"
+    },
+
+    "England": {
+        flag: "🏴",
+        players: [
+            "Harry Brook",
+            "Rehan Ahmed",
+            "Jofra Archer",
+            "Tom Banton",
+            "Jacob Bethell",
+            "Jos Buttler",
+            "Sam Curran",
+            "Liam Dawson",
+            "Ben Duckett",
+            "Will Jacks",
+            "Jamie Overton",
+            "Adil Rashid",
+            "Phil Salt",
+            "Josh Tongue",
+            "Luke Wood"
+        ],
+        captain: "Harry Brook"
+    },
+
+    "Pakistan": {
+        flag: "🇵🇰",
+        players: [
+            "Salman Ali Agha",
+            "Abrar Ahmed",
+            "Babar Azam",
+            "Faheem Ashraf",
+            "Fakhar Zaman",
+            "Khawaja Nafay",
+            "Mohammad Nawaz",
+            "Salman Mirza",
+            "Naseem Shah",
+            "Sahibzada Farhan",
+            "Saim Ayub",
+            "Shaheen Afridi",
+            "Shadab Khan",
+            "Usman Khan",
+            "Usman Tariq"
+        ],
+        captain: "Salman Ali Agha"
+    },
+
+    "New Zealand": {
+        flag: "🇳🇿",
+        players: [
+            "Mitchell Santner",
+            "Finn Allen",
+            "Mark Chapman",
+            "Devon Conway",
+            "Jacob Duffy",
+            "Lockie Ferguson",
+            "Matt Henry",
+            "Kyle Jamieson",
+            "Daryl Mitchell",
+            "James Neesham",
+            "Glenn Phillips",
+            "Rachin Ravindra",
+            "Tim Seifert",
+            "Ish Sodhi",
+            "Cole McConchie"
+        ],
+        captain: "Mitchell Santner"
+    },
+
+    "South Africa": {
+        flag: "🇿🇦",
+        players: [
+            "Aiden Markram",
+            "Corbin Bosch",
+            "Dewald Brevis",
+            "Quinton de Kock",
+            "Marco Jansen",
+            "George Linde",
+            "Keshav Maharaj",
+            "Kwena Maphaka",
+            "David Miller",
+            "Lungi Ngidi",
+            "Anrich Nortje",
+            "Kagiso Rabada",
+            "Ryan Rickelton",
+            "Jason Smith",
+            "Tristan Stubbs"
+        ],
+        captain: "Aiden Markram"
+    },
+
+    "Sri Lanka": {
+        flag: "🇱🇰",
+        players: [
+            "Dasun Shanaka",
+            "Pathum Nissanka",
+            "Kamil Mishara",
+            "Kusal Mendis",
+            "Kamindu Mendis",
+            "Kusal Perera",
+            "Charith Asalanka",
+            "Janith Liyanage",
+            "Pavan Rathnayake",
+            "Dushan Hemantha",
+            "Dunith Wellalage",
+            "Maheesh Theekshana",
+            "Dushmantha Chameera",
+            "Matheesha Pathirana",
+            "Eshan Malinga"
+        ],
+        captain: "Dasun Shanaka"
+    },
+
+    "Bangladesh": {
+        flag: "🇧🇩",
+        players: [
+            "Litton Das",
+            "Tanzid Hasan",
+            "Soumya Sarkar",
+            "Towhid Hridoy",
+            "Jaker Ali",
+            "Mahmudullah",
+            "Shakib Al Hasan",
+            "Mehidy Hasan Miraz",
+            "Rishad Hossain",
+            "Taskin Ahmed",
+            "Mustafizur Rahman",
+            "Shoriful Islam",
+            "Tanzim Hasan Sakib",
+            "Hasan Mahmud",
+            "Nasum Ahmed"
+        ],
+        captain: "Litton Das"
+    },
+
+    "West Indies": {
+        flag: "🌴",
+        players: [
+            "Shai Hope",
+            "Shimron Hetmyer",
+            "Johnson Charles",
+            "Roston Chase",
+            "Matthew Forde",
+            "Jason Holder",
+            "Akeal Hosein",
+            "Shamar Joseph",
+            "Brandon King",
+            "Gudakesh Motie",
+            "Rovman Powell",
+            "Sherfane Rutherford",
+            "Quentin Sampson",
+            "Jayden Seales",
+            "Romario Shepherd"
+        ],
+        captain: "Shai Hope"
+    },
+
+    "Afghanistan": {
+        flag: "🇦🇫",
+        players: [
+            "Rashid Khan",
+            "Noor Ahmad",
+            "Abdullah Ahmadzai",
+            "Sediqullah Atal",
+            "Fazalhaq Farooqi",
+            "Rahmanullah Gurbaz",
+            "Mohammad Ishaq Rahimi",
+            "Shahidullah Kamal",
+            "Mohammad Nabi",
+            "Gulbadin Naib",
+            "Azmatullah Omarzai",
+            "Mujeeb Ur Rahman",
+            "Darwish Rasooli",
+            "Ibrahim Zadran",
+            "Zia Ur Rahman Sharifi"
+        ],
+        captain: "Rashid Khan"
+    },
+
+    "Ireland": {
+        flag: "🇮🇪",
+        players: [
+            "Mark Adair",
+            "Ross Adair",
+            "Ben Calitz",
+            "Curtis Campher",
+            "Gareth Delany",
+            "George Dockrell",
+            "Matthew Humphreys",
+            "Josh Little",
+            "Barry McCarthy",
+            "Harry Tector",
+            "Tim Tector",
+            "Lorcan Tucker",
+            "Sam Topping",
+            "Ben White",
+            "Craig Young"
+        ],
+        captain: "Paul Stirling"
+    },
+
+    "Zimbabwe": {
+        flag: "🇿🇼",
+        players: [
+            "Sikandar Raza",
+            "Brian Bennett",
+            "Ryan Burl",
+            "Graeme Cremer",
+            "Ben Curran",
+            "Bradley Evans",
+            "Clive Madande",
+            "Tinotenda Maposa",
+            "Tadiwanashe Marumani",
+            "Wellington Masakadza",
+            "Tony Munyonga",
+            "Tashinga Musekiwa",
+            "Blessing Muzarabani",
+            "Dion Myers",
+            "Richard Ngarava"
+        ],
+        captain: "Sikandar Raza"
+    }
+
+};
+
+
+/* ========================================
+   CREATE 12 TEAM CARDS
+======================================== */
+
+const teamContainer = document.getElementById("teamContainer");
+
+Object.entries(teams).forEach(([team, data]) => {
+
+    const card = document.createElement("div");
+
+    card.className = "team-card";
+
+    const flag = document.createElement("div");
+    flag.className = "flag";
+    flag.textContent = data.flag;
+
+    const heading = document.createElement("h2");
+    heading.textContent = team;
+
+    const members = document.createElement("p");
+    members.textContent = data.players.length + " Squad Members";
+
+    const button = document.createElement("button");
+    button.className = "btn";
+    button.textContent = "View Full Squad";
+
+    card.append(flag, heading, members, button);
+
+    card.addEventListener("click", () => {
+        openTeam(team);
+    });
+
+    teamContainer.appendChild(card);
+
+});
+
+
+/* ========================================
+   OPEN A SEPARATE TEAM SQUAD PAGE
+======================================== */
+
+let currentTeam = "";
+
+function openTeam(team) {
+
+    currentTeam = team;
+
+    document.getElementById("teams").classList.add("hidden");
+
+    document.getElementById("squadPage").classList.remove("hidden");
+
+    document.getElementById("teamFlag").textContent = teams[team].flag;
+
+    document.getElementById("teamName").textContent =
+        team + " Cricket Team";
+
+    document.getElementById("playerSearch").value = "";
+
+    showSquad();
+
+    document.getElementById("squadPage").scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+/* ========================================
+   BACK TO ALL TEAMS
+======================================== */
+
+function backToTeams() {
+
+    document.getElementById("squadPage").classList.add("hidden");
+
+    document.getElementById("teams").classList.remove("hidden");
+
+    document.getElementById("teams").scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+/* ========================================
+   PLAYER PHOTO AND PROFILE
+======================================== */
+
+function makeAvatar(name) {
+
+    return "https://ui-avatars.com/api/?name=" +
+        encodeURIComponent(name) +
+        "&background=174b38&color=ffffff&size=400&bold=true";
+
+}
+
+const photoCache = new Map();
+const biographyCache = new Map();
+
+async function getPlayerProfile(name) {
+
+    if (biographyCache.has(name)) {
+        return biographyCache.get(name);
+    }
+
+    try {
+
+        const url =
+            "https://en.wikipedia.org/api/rest_v1/page/summary/" +
+            encodeURIComponent(name);
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Profile unavailable");
+        }
+
+        const data = await response.json();
+
+        const profile = {
+            image: data.thumbnail?.source || makeAvatar(name),
+            description: data.extract ||
+                "Player biography is not available.",
+            link: data.content_urls?.desktop?.page ||
+                "https://en.wikipedia.org/wiki/" +
+                encodeURIComponent(name)
+        };
+
+        biographyCache.set(name, profile);
+
+        return profile;
+
+    } catch (error) {
+
+        return {
+            image: makeAvatar(name),
+            description:
+                "Biography is currently unavailable. Click below to explore more information about this player.",
+            link: "https://en.wikipedia.org/wiki/" +
+                encodeURIComponent(name)
+        };
+
+    }
+
+}
+
+
+/* ========================================
+   DISPLAY ONLY SELECTED TEAM'S PLAYERS
+======================================== */
+
+const playerContainer =
+    document.getElementById("playerContainer");
+
+function showSquad() {
+
+    const data = teams[currentTeam];
+
+    const search = document.getElementById("playerSearch")
+        .value.toLowerCase().trim();
+
+    playerContainer.innerHTML = "";
+
+    let displayed = 0;
+
+    data.players.forEach((player, index) => {
+
+        if (!player.toLowerCase().includes(search)) {
+            return;
+        }
+
+        displayed++;
+
+        const card = document.createElement("div");
+        card.className = "player-card";
+
+        const img = document.createElement("img");
+        img.src = photoCache.get(player) || makeAvatar(player);
+        img.alt = player + " photograph";
+        img.loading = "lazy";
+
+        const name = document.createElement("h3");
+        name.textContent = player;
+
+        const teamName = document.createElement("p");
+        teamName.textContent = data.flag + " " + currentTeam;
+
+        card.append(img, name, teamName);
+
+        if (player === data.captain) {
+            const captain = document.createElement("p");
+            captain.className = "captain";
+            captain.textContent = "★ Captain";
+            card.appendChild(captain);
+        }
+
+        const button = document.createElement("button");
+        button.className = "explore-btn";
+        button.textContent = "Explore Details";
+
+        button.addEventListener("click", () => {
+            openPlayer(player);
+        });
+
+        card.appendChild(button);
+
+        playerContainer.appendChild(card);
+
+        loadPhoto(player, img);
+
+    });
+
+    document.getElementById("playerCount").textContent =
+        "Showing " + displayed + " of " +
+        data.players.length + " players in " + currentTeam;
+
+    if (displayed === 0) {
+        const message = document.createElement("p");
+        message.textContent = "No players found in this team.";
+        playerContainer.appendChild(message);
+    }
+
+}
+
+
+/* ========================================
+   LOAD PLAYER PHOTOS
+======================================== */
+
+async function loadPhoto(player, img) {
+
+    if (photoCache.has(player)) {
+        img.src = photoCache.get(player);
+        return;
+    }
+
+    const profile = await getPlayerProfile(player);
+
+    photoCache.set(player, profile.image);
+
+    if (img.isConnected) {
+        img.src = profile.image;
+    }
+
+}
+
+
+/* ========================================
+   SEARCH WITHIN SELECTED TEAM
+======================================== */
+
+document.getElementById("playerSearch")
+.addEventListener("input", showSquad);
+
+
+/* ========================================
+   EXPLORE PLAYER DETAILS
+======================================== */
+
+async function openPlayer(player) {
+
+    const modal = document.getElementById("playerModal");
+
+    modal.style.display = "flex";
+
+    document.getElementById("modalName").textContent = player;
+
+    document.getElementById("modalTeam").textContent =
+        teams[currentTeam].flag + " " + currentTeam + " Cricket Team";
+
+    document.getElementById("modalImage").src = makeAvatar(player);
+
+    document.getElementById("modalDescription").textContent =
+        "Loading player details...";
+
+    document.getElementById("wikiLink").href =
+        "https://en.wikipedia.org/wiki/" +
+        encodeURIComponent(player);
+
+    const profile = await getPlayerProfile(player);
+
+    document.getElementById("modalImage").src = profile.image;
+
+    document.getElementById("modalDescription").textContent =
+        profile.description;
+
+    document.getElementById("wikiLink").href = profile.link;
+
+}
+
+function closeModal() {
+
+    document.getElementById("playerModal").style.display = "none";
+
+}
+
+window.addEventListener("click", function(event) {
+
+    const modal = document.getElementById("playerModal");
+
+    if (event.target === modal) {
+        closeModal();
+    }
+
+});
+
+window.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+        closeModal();
+    }
+
+});
+
+
+/* ========================================
+   TICKET BOOKING DEMONSTRATION
+======================================== */
+
+document.getElementById("bookingForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+
+    const email = document.getElementById("email").value.trim();
+
+    const phone = document.getElementById("phone").value.trim();
+
+    const match = document.getElementById("match").value;
+
+    const quantity = Number(
+        document.getElementById("quantity").value
+    );
+
+    if (!/^[0-9]{10}$/.test(phone)) {
+
+        alert("Enter a valid 10-digit phone number.");
+        return;
+
+    }
+
+    if (!Number.isInteger(quantity) ||
+        quantity < 1 || quantity > 10) {
+
+        alert("Select between 1 and 10 tickets.");
+        return;
+
+    }
+
+    const bookingID = "ICC" + Date.now();
+
+    const confirmation =
+        document.getElementById("confirmation");
+
+    confirmation.innerHTML = `
+        <h2>Booking Request Submitted!</h2>
+        <p>Thank you, ${escapeHTML(name)}!</p>
+        <p>Match: ${escapeHTML(match)}</p>
+        <p>Number of Tickets: ${quantity}</p>
+        <p>Booking ID: ${bookingID}</p>
+        <p>This is a demo confirmation, not a valid match ticket.</p>
+    `;
+
+    document.getElementById("bookingForm").reset();
+
+});
+
+
+/* ========================================
+   SAFE TEXT DISPLAY
+======================================== */
+
+function escapeHTML(value) {
+
+    return value.replace(/[&<>"']/g, function(char) {
+
+        return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        }[char];
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

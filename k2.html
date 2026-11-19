@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Kabaddi Arena</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+. {box-sizing:border-box}
+body {
+  margin:0;
+  font-family:Arial;
+  background:#10131c;
+  color:white;
+}
+header {
+  background:#a51d24;
+  padding:25px;
+  text-align:center;
+}
+nav {
+  background:#202635;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px;
+  padding:12px;
+}
+button, nav button {
+  background:#e64b32;
+  color:white;
+  border:0;
+  padding:12px 17px;
+  cursor:pointer;
+  border-radius:5px;
+}
+nav button {background:transparent}
+nav button:hover, button:hover {
+  background:#ff704b;
+}
+section {
+  padding:25px;
+  max-width:1100px;
+  margin:auto;
+}
+.hero {
+  text-align:center;
+  padding:65px 15px;
+  background:linear-gradient(120deg,#761820,#df542c);
+}
+.hero h1 {font-size:38px}
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+}
+.card {
+  background:#252d3d;
+  padding:20px;
+  border-radius:10px;
+  text-align:center;
+  cursor:pointer;
+  border:1px solid #424b5d;
+}
+.card:hover {
+  border-color:#ff704b;
+  transform:translateY(-3px);
+}
+.card h3 {color:#ffb18d}
+.info {
+  background:#252d3d;
+  padding:20px;
+  border-radius:10px;
+  margin-top:20px;
+}
+input {
+  padding:12px;
+  width:100%;
+  margin:12px 0;
+  border-radius:5px;
+}
+table {
+  width:100%;
+  border-collapse:collapse;
+  background:#252d3d;
+}
+td,th {
+  padding:12px;
+  border:1px solid #566071;
+  text-align:center;
+}
+footer {
+  text-align:center;
+  padding:20px;
+  background:#080a10;
+}
+a {color:#ffb18d}
+.hidden {display:none}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🏆 KABADDI ARENA</h1>
+<p>Feel the Power. Experience the Game.</p>
+</header>
+
+<nav>
+<button onclick="showPage('home')">Home</button>
+<button onclick="showPage('teams')">Teams</button>
+<button onclick="showPage('players')">Players</button>
+<button onclick="showPage('matches')">Matches</button>
+<button onclick="showPage('table')">Points Table</button>
+<button onclick="showPage('about')">About</button>
+</nav>
+
+<div id="home" class="page">
+<div class="hero">
+<h1>WELCOME TO KABADDI ARENA</h1>
+<p>Explore teams, players and the exciting world of Kabaddi.</p>
+<button onclick="showPage('teams')">Explore Teams</button>
+<button onclick="showPage('players')">Explore Players</button>
+</div>
+
+<section>
+<h2>About Kabaddi</h2>
+<p>Kabaddi is a popular Indian team sport.
+It combines strength, speed, strategy and teamwork.
+Each team has seven players on the court.</p>
+
+<h2>Explore Our Website</h2>
+<div class="grid">
+<div class="card" onclick="showPage('teams')">
+<h3>🏆 Teams</h3>
+<p>Explore 12 PKL teams</p>
+</div>
+<div class="card" onclick="showPage('players')">
+<h3>👤 Players</h3>
+<p>Explore player profiles</p>
+</div>
+<div class="card" onclick="showPage('matches')">
+<h3>🏟️ Matches</h3>
+<p>Explore match information</p>
+</div>
+<div class="card" onclick="showPage('table')">
+<h3>📊 Points Table</h3>
+<p>View sample standings</p>
+</div>
+</div>
+</section>
+</div>
+
+<div id="teams" class="page hidden">
+<section>
+<h2>PRO KABADDI TEAMS</h2>
+<input id="teamSearch" placeholder="Search team..."
+oninput="searchTeams()">
+<div id="teamList" class="grid"></div>
+<div id="teamInfo" class="info hidden"></div>
+</section>
+</div>
+
+<div id="players" class="page hidden">
+<section>
+<h2>POPULAR KABADDI PLAYERS</h2>
+<input id="playerSearch" placeholder="Search player..."
+oninput="searchPlayers()">
+<div id="playerList" class="grid"></div>
+<div id="playerInfo" class="info hidden"></div>
+</section>
+</div>
+
+<div id="matches" class="page hidden">
+<section>
+<h2>MATCH CENTRE</h2>
+<div class="grid">
+<div class="card">
+<h3>Bengaluru Bulls</h3>
+<p>VS</p>
+<h3>Patna Pirates</h3>
+<button onclick="matchInfo('Bengaluru Bulls','Patna Pirates')">View Match</button>
+</div>
+<div class="card">
+<h3>Jaipur Pink Panthers</h3>
+<p>VS</p>
+<h3>U Mumba</h3>
+<button onclick="matchInfo('Jaipur Pink Panthers','U Mumba')">View Match</button>
+</div>
+<div class="card">
+<h3>Tamil Thalaivas</h3>
+<p>VS</p>
+<h3>Telugu Titans</h3>
+<button onclick="matchInfo('Tamil Thalaivas','Telugu Titans')">View Match</button>
+</div>
+</div>
+<div id="matchInfo" class="info hidden"></div>
+<p>These are demonstration match pairings, not live fixtures.</p>
+<a href="https://www.prokabaddi.com/schedule-fixtures-results"
+target="_blank">Official match schedule</a>
+</section>
+</div>
+
+<div id="table" class="page hidden">
+<section>
+<h2>POINTS TABLE</h2>
+<p>Example standings for website demonstration.</p>
+<table>
+<tr><th>Position</th><th>Team</th><th>Points</th></tr>
+<tr><td>1</td><td>Puneri Paltan</td><td>26</td></tr>
+<tr><td>2</td><td>Dabang Delhi</td><td>26</td></tr>
+<tr><td>3</td><td>Bengaluru Bulls</td><td>22</td></tr>
+<tr><td>4</td><td>Telugu Titans</td><td>20</td></tr>
+</table>
+<p><a href="https://www.prokabaddi.com/standings"
+target="_blank">View official standings</a></p>
+</section>
+</div>
+
+<div id="about" class="page hidden">
+<section>
+<h2>ABOUT OUR WEBSITE</h2>
+<p>Kabaddi Arena is an educational website
+created to explore the sport of Kabaddi.</p>
+<h3>Website Features</h3>
+<ul>
+<li>Team information</li>
+<li>Player profiles</li>
+<li>Match information</li>
+<li>Points table</li>
+<li>Interactive navigation</li>
+</ul>
+<h3>Official Website</h3>
+<a href="https://www.prokabaddi.com/"
+target="_blank">Visit Pro Kabaddi League</a>
+</section>
+</div>
+
+<footer>
+<p>© 2026 Kabaddi Arena | College Project</p>
+</footer>
+
+<script>
+
+const teams = [
+"Bengal Warriorz","Bengaluru Bulls",
+"Dabang Delhi K.C.","Gujarat Giants",
+"Haryana Steelers","Jaipur Pink Panthers",
+"Patna Pirates","Puneri Paltan",
+"Tamil Thalaivas","Telugu Titans",
+"U Mumba","UP Yoddhas"
+];
+
+const players = [
+{name:"Pardeep Narwal",role:"Raider",team:"UP Yoddhas"},
+{name:"Arjun Deshwal",role:"Raider",team:"Jaipur Pink Panthers"},
+{name:"Fazel Atrachali",role:"Defender",team:"U Mumba"},
+{name:"Naveen Kumar",role:"Raider",team:"Dabang Delhi K.C."},
+{name:"Pawan Sehrawat",role:"Raider",team:"Telugu Titans"},
+{name:"Maninder Singh",role:"Raider",team:"Bengal Warriorz"}
+];
+
+function showPage(id) {
+ document.querySelectorAll(".page").forEach(p=>{
+   p.classList.add("hidden");
+ });
+ document.getElementById(id).classList.remove("hidden");
+ window.scrollTo(0,0);
+}
+
+function displayTeams(list=teams) {
+ document.getElementById("teamList").innerHTML =
+ list.map((team,i)=>`
+ <div class="card" onclick="showTeam(${teams.indexOf(team)})">
+ <h3>🏆 ${team}</h3>
+ <p>Click to explore team</p>
+ </div>`).join("");
+}
+
+function showTeam(i) {
+ let team=teams[i];
+ let el=document.getElementById("teamInfo");
+ el.classList.remove("hidden");
+ el.innerHTML=`
+ <h2>${team}</h2>
+ <p>Pro Kabaddi League team</p>
+ <h3>Players in our sample directory</h3>
+ ${players.filter(p=>p.team===team).map(p=>p.name).join(", ") || "Player details can be added here."}
+ <p><a href="https://www.prokabaddi.com/teams" target="_blank">Official team information</a></p>
+ <button onclick="document.getElementById('teamInfo').classList.add('hidden')">Close</button>`;
+}
+
+function searchTeams() {
+ let q=document.getElementById("teamSearch").value.toLowerCase();
+ displayTeams(teams.filter(t=>t.toLowerCase().includes(q)));
+}
+
+function displayPlayers(list=players) {
+ document.getElementById("playerList").innerHTML =
+ list.map((p,i)=>`
+ <div class="card" onclick="showPlayer(${players.indexOf(p)})">
+ <h3>👤 ${p.name}</h3>
+ <p>${p.role}</p>
+ <p>${p.team}</p>
+ <p>Click for details</p>
+ </div>`).join("");
+}
+
+function showPlayer(i) {
+ let p=players[i];
+ let el=document.getElementById("playerInfo");
+ el.classList.remove("hidden");
+ el.innerHTML=`
+ <h2>${p.name}</h2>
+ <p>Role: ${p.role}</p>
+ <p>Team: ${p.team}</p>
+ <p>Explore official player information on PKL.</p>
+ <a href="https://www.prokabaddi.com/"
+ target="_blank">Official PKL website</a><br><br>
+ <button onclick="document.getElementById('playerInfo').classList.add('hidden')">Close</button>`;
+}
+
+function searchPlayers() {
+ let q=document.getElementById("playerSearch").value.toLowerCase();
+ displayPlayers(players.filter(p=>
+ p.name.toLowerCase().includes(q) ||
+ p.team.toLowerCase().includes(q)));
+}
+
+function matchInfo(a,b) {
+ let el=document.getElementById("matchInfo");
+ el.classList.remove("hidden");
+ el.innerHTML=`
+ <h2>${a} VS ${b}</h2>
+ <p>Sample match details</p>
+ <p>Check the official website for real match scores.</p>
+ <button onclick="showPage('matches')">Back to Matches</button>`;
+}
+
+displayTeams();
+displayPlayers();
+
+</script>
+</body>
+</html>

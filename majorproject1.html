@@ -1,0 +1,693 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sports Arena | Sports News</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f4f6fa;
+    color: #172033;
+}
+
+/* Navigation */
+header {
+    background: #101a30;
+    color: white;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #ff4b35;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ff4b35;
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    color: white;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 520px;
+    background:
+    linear-gradient(90deg, rgba(0,0,0,.85), rgba(0,0,0,.2)),
+    url("https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1600")
+    center/cover;
+    display: flex;
+    align-items: center;
+    padding: 70px 8%;
+    color: white;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.tag {
+    color: #ff5945;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.hero h1 {
+    font-size: 55px;
+    margin: 20px 0;
+    line-height: 1.15;
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.btn {
+    display: inline-block;
+    background: #ff4b35;
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 5px;
+}
+
+/* Common Sections */
+section {
+    padding: 65px 8%;
+}
+
+section h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #687386;
+    margin-bottom: 35px;
+}
+
+/* Sports Categories */
+.sports-grid,
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.sport-card {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.sport-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .4s;
+}
+
+.sport-card:hover img {
+    transform: scale(1.1);
+}
+
+.sport-card h3 {
+    position: absolute;
+    bottom: 0;
+    color: white;
+    background: linear-gradient(transparent, black);
+    padding: 35px 15px 15px;
+    width: 100%;
+}
+
+/* News Section */
+.news {
+    background: white;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+}
+
+.filters button {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.filters button.active,
+.filters button:hover {
+    background: #ff4b35;
+    color: white;
+    border-color: #ff4b35;
+}
+
+.news-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px #00000012;
+}
+
+.news-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.news-info {
+    padding: 18px;
+}
+
+.news-info span {
+    color: #ff4b35;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.news-info h3 {
+    margin: 12px 0;
+}
+
+.news-info p {
+    color: #687386;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.news-info button {
+    margin-top: 15px;
+    border: none;
+    background: none;
+    color: #ff4b35;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.demo-note {
+    text-align: center;
+    margin-top: 25px;
+    color: #777;
+    font-size: 13px;
+}
+
+/* Importance of Sports */
+.importance {
+    background: #101a30;
+    color: white;
+}
+
+.importance .subtitle {
+    color: #c4ccdc;
+}
+
+.benefits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.benefit {
+    background: #1c2942;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.benefit h3 {
+    margin-bottom: 12px;
+    color: #ff755f;
+}
+
+.benefit p {
+    color: #d0d6e1;
+    line-height: 1.6;
+}
+
+/* Quote Section */
+.quote {
+    text-align: center;
+    background: #ff4b35;
+    color: white;
+}
+
+.quote p {
+    margin-top: 15px;
+}
+
+/* Footer */
+footer {
+    background: #0b1324;
+    color: white;
+    text-align: center;
+    padding: 40px 15px;
+    line-height: 2;
+}
+
+/* Read More Popup */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000a;
+    z-index: 20;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: white;
+    padding: 35px;
+    border-radius: 10px;
+    max-width: 450px;
+    line-height: 1.7;
+    color: #172033;
+}
+
+.close {
+    float: right;
+    border: none;
+    background: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media(max-width: 900px) {
+    .sports-grid,
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .benefits {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 650px) {
+    nav {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        background: #101a30;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    nav.show {
+        display: flex;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .sports-grid,
+    .news-grid,
+    .benefits {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">SPORTS<span>ARENA</span></div>
+
+    <nav id="navbar">
+        <a href="#home">Home</a>
+        <a href="#news">Latest News</a>
+        <a href="#sports">Sports</a>
+        <a href="#importance">Importance</a>
+        <a href="#about">About</a>
+    </nav>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+</header>
+
+<!-- HOME SECTION -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <p class="tag">THE WORLD OF SPORTS</p>
+
+        <h1>
+            ONE GAME.<br>
+            ONE PASSION.<br>
+            ENDLESS ENERGY.
+        </h1>
+
+        <p>
+            Stay updated with the exciting world of
+            cricket, football, kabaddi and bike racing.
+        </p>
+
+        <a href="#news" class="btn">Explore News</a>
+    </div>
+</section>
+
+<!-- SPORTS CATEGORIES -->
+<section class="sports" id="sports">
+
+    <h2>Explore Sports</h2>
+    <p class="subtitle">Choose your favourite sport</p>
+
+    <div class="sports-grid">
+
+        <div class="sport-card">
+            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600"
+                 alt="Bike Racing">
+            <h3>Bike Racing</h3>
+        </div>
+
+        <div class="sport-card">
+            <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=600"
+                 alt="Cricket">
+            <h3>Cricket</h3>
+        </div>
+
+        <div class="sport-card">
+            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600"
+                 alt="Football">
+            <h3>Football</h3>
+        </div>
+
+        <div class="sport-card">
+            <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?w=600"
+                 alt="Kabaddi">
+            <h3>Kabaddi</h3>
+        </div>
+
+    </div>
+</section>
+
+<!-- LATEST NEWS -->
+<section class="news" id="news">
+
+    <h2>Latest Sports News</h2>
+    <p class="subtitle">
+        Discover stories from the sporting world
+    </p>
+
+    <div class="filters">
+        <button class="active" onclick="filterNews('all',this)">All</button>
+        <button onclick="filterNews('bike',this)">Bike Racing</button>
+        <button onclick="filterNews('kabaddi',this)">Kabaddi</button>
+        <button onclick="filterNews('cricket',this)">Cricket</button>
+        <button onclick="filterNews('football',this)">Football</button>
+    </div>
+
+    <div class="news-grid">
+
+        <article class="news-card" data-category="bike">
+            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600"
+                 alt="Bike Racing">
+
+            <div class="news-info">
+                <span>BIKE RACING</span>
+                <h3>The Thrill and Speed of Bike Racing</h3>
+                <p>
+                    Explore the world of high-speed racing,
+                    skill and competition.
+                </p>
+
+                <button onclick="window.location.href='file:///C:/Users/hp/Downloads/RACCER.html'">
+                   Read More →
+                </button>
+            </div>
+        </article>
+
+        <article class="news-card" data-category="kabaddi">
+            <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?w=600"
+                 alt="Kabaddi">
+
+            <div class="news-info">
+                <span>KABADDI</span>
+                <h3>Kabaddi: Strength Meets Strategy</h3>
+                <p>
+                    A traditional team sport that tests
+                    strength, agility and teamwork.
+                </p>
+
+                <button onclick="window.location.href='file:///C:/Users/hp/Downloads/k2.html'">
+                    Read More →
+                </button>
+            </div>
+        </article>
+
+        <article class="news-card" data-category="cricket">
+            <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=600"
+                 alt="Cricket">
+
+            <div class="news-info">
+                <span>CRICKET</span>
+                <h3>Cricket: A Game Loved by Millions</h3>
+                <p>
+                    Discover the excitement of batting,
+                    bowling and fielding.
+                </p>
+
+                <button onclick="window.location.href='file:///C:/Users/hp/Downloads/c3.html'">
+                    Read More →
+                </button>
+            </div>
+        </article>
+
+        <article class="news-card" data-category="football">
+            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600"
+                 alt="Football">
+
+            <div class="news-info">
+                <span>FOOTBALL</span>
+                <h3>Football: The Beautiful Game</h3>
+                <p>
+                    Experience the passion, teamwork
+                    and energy of football.
+                </p>
+
+                <button onclick="window.location.href='file:///C:/Users/hp/Downloads/f1.html'">
+                    Read More →
+                </button>
+            </div>
+        </article>
+
+    </div>
+
+    <p class="demo-note">
+        Note: These are sample stories for website demonstration,
+        not live news reports.
+    </p>
+
+</section>
+
+<!-- IMPORTANCE OF SPORTS -->
+<section class="importance" id="importance">
+
+    <h2>Importance of Sports in Our Life</h2>
+
+    <p class="subtitle">
+        Sports are not just games; they are an essential part
+        of a healthy life.
+    </p>
+
+    <div class="benefits">
+
+        <div class="benefit">
+            <h3>💪 Physical Fitness</h3>
+            <p>
+                Sports improve strength, stamina, flexibility
+                and overall health.
+            </p>
+        </div>
+
+        <div class="benefit">
+            <h3>🧠 Mental Health</h3>
+            <p>
+                Playing sports reduces stress, improves
+                concentration and supports mental well-being.
+            </p>
+        </div>
+
+        <div class="benefit">
+            <h3>🤝 Teamwork</h3>
+            <p>
+                Sports teach cooperation, communication
+                and working together.
+            </p>
+        </div>
+
+        <div class="benefit">
+            <h3>🏆 Discipline</h3>
+            <p>
+                Regular practice develops dedication,
+                responsibility and self-control.
+            </p>
+        </div>
+
+        <div class="benefit">
+            <h3>⭐ Confidence</h3>
+            <p>
+                Achievements and challenges help build
+                confidence and self-esteem.
+            </p>
+        </div>
+
+        <div class="benefit">
+            <h3>🎯 Leadership</h3>
+            <p>
+                Sports encourage decision-making,
+                problem-solving and leadership.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote">
+    <h2>"Winners never quit, and quitters never win."</h2>
+    <p>Play with passion. Live with purpose.</p>
+</section>
+
+<!-- FOOTER -->
+<footer id="about">
+    <h2>SPORTS ARENA</h2>
+    <p>Your destination for the world of sports.</p>
+    <p>© 2026 Sports Arena | All Rights Reserved</p>
+</footer>
+
+<!-- READ MORE POPUP -->
+<div id="modal" class="modal">
+
+    <div class="modal-content">
+
+        <button class="close" onclick="closeModal()">×</button>
+
+        <h2>Sports Story</h2>
+
+        <p id="modal-text"></p>
+
+    </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+
+// Mobile Navigation
+function toggleMenu() {
+    document.getElementById("navbar")
+        .classList.toggle("show");
+}
+
+// Filter Sports News
+function filterNews(category, button) {
+
+    let cards = document.querySelectorAll(".news-card");
+
+    cards.forEach(card => {
+
+        if (category === "all" ||
+            card.dataset.category === category) {
+
+            card.style.display = "block";
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+    document.querySelectorAll(".filters button")
+        .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+}
+
+// Read More Popup
+function readMore(message) {
+
+    document.getElementById("modal-text").innerText = message;
+
+    document.getElementById("modal").style.display = "flex";
+}
+
+// Close Popup
+function closeModal() {
+
+    document.getElementById("modal").style.display = "none";
+
+}
+
+// Close Popup When Clicking Outside
+window.onclick = function(event) {
+
+    let modal = document.getElementById("modal");
+
+    if (event.target === modal) {
+        closeModal();
+    }
+
+};
+
+</script>
+
+</body>
+</html>

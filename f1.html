@@ -1,0 +1,661 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Football Legends 2026</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #101820;
+    color: white;
+}
+
+/* HEADER */
+
+header {
+    background: #063b29;
+    text-align: center;
+    padding: 30px;
+}
+
+header h1 {
+    color: #00ff99;
+    font-size: 38px;
+}
+
+header p {
+    margin-top: 10px;
+}
+
+/* NAVIGATION */
+
+nav {
+    background: #07130e;
+    padding: 18px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 18px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #00ff99;
+}
+
+/* HERO SECTION */
+
+.hero {
+    text-align: center;
+    padding: 90px 20px;
+    background: linear-gradient(135deg, #063b29, #101820);
+}
+
+.hero h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    margin-bottom: 25px;
+}
+
+.btn {
+    display: inline-block;
+    background: #00cc77;
+    color: black;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #00ff99;
+}
+
+/* SECTIONS */
+
+section {
+    padding: 50px 8%;
+    text-align: center;
+}
+
+section h2 {
+    color: #00ff99;
+    margin-bottom: 30px;
+}
+
+/* TEAM AND MATCH CONTAINERS */
+
+.team-container,
+.match-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+}
+
+/* TEAM CARDS */
+
+.team-card,
+.match-card {
+    background: #1c2b35;
+    border-radius: 12px;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.team-card:hover,
+.match-card:hover {
+    transform: translateY(-6px);
+    background: #244438;
+}
+
+.team-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.team-card h3,
+.match-card h3 {
+    color: #00ff99;
+    margin: 15px 0;
+}
+
+.team-card p,
+.match-card p {
+    line-height: 1.8;
+}
+
+/* BUTTONS */
+
+button {
+    background: #00cc77;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #00ff99;
+}
+
+/* MATCH CARDS */
+
+.match-card h2 {
+    color: white;
+    margin: 15px;
+}
+
+.status {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #075e3c;
+    color: #00ff99;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.upcoming .status {
+    background: #174b70;
+    color: #75caff;
+}
+
+/* FIFA SECTION */
+
+.fifa-section {
+    background: linear-gradient(135deg, #063b29, #101820);
+    padding: 70px 20px;
+}
+
+.fifa-section p {
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+/* FOOTER */
+
+footer {
+    background: #063b29;
+    padding: 25px;
+    text-align: center;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media(max-width: 600px) {
+
+    nav a {
+        display: inline-block;
+        margin: 7px;
+        font-size: 14px;
+    }
+
+    .hero h2 {
+        font-size: 24px;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+    <h1>⚽ FOOTBALL LEGENDS</h1>
+
+    <p>Discover the World's Greatest Football Clubs and Players</p>
+
+</header>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+    <a href="#home">Home</a>
+
+    <a href="#teams">Teams</a>
+
+    <a href="#recent">Recent Matches</a>
+
+    <a href="#upcoming">Upcoming Matches</a>
+
+    <a href="#fifa">FIFA</a>
+
+</nav>
+
+
+<!-- HOME SECTION -->
+
+<section id="home" class="hero">
+
+    <h2>WELCOME TO THE WORLD OF FOOTBALL</h2>
+
+    <p>
+        Explore famous clubs, legendary players and
+        2026 football matches.
+    </p>
+
+    <a href="#teams" class="btn">Explore Teams</a>
+
+</section>
+
+
+<!-- FOOTBALL TEAMS SECTION -->
+
+<section id="teams">
+
+    <h2>FAMOUS FOOTBALL CLUBS</h2>
+
+    <div id="team-container" class="team-container"></div>
+
+</section>
+
+
+<!-- RECENT MATCHES SECTION -->
+
+<section id="recent">
+
+    <h2>RECENT MATCHES - 2026</h2>
+
+    <div id="recent-container" class="match-container"></div>
+
+</section>
+
+
+<!-- UPCOMING MATCHES SECTION -->
+
+<section id="upcoming">
+
+    <h2>UPCOMING MATCHES - 2026</h2>
+
+    <div id="upcoming-container" class="match-container"></div>
+
+</section>
+
+
+<!-- FIFA SECTION -->
+
+<section id="fifa" class="fifa-section">
+
+    <h2>EXPLORE FIFA</h2>
+
+    <p>
+        FIFA is the international governing body of football.
+        Explore international football news, tournaments,
+        FIFA World Cup updates, rankings and more.
+    </p>
+
+    <a href="https://www.fifa.com/"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="btn">
+
+       Visit Official FIFA Website
+
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>© 2026 Football Legends | All Rights Reserved</p>
+
+</footer>
+
+
+<script>
+
+// FOOTBALL CLUBS
+
+const teams = [
+
+    {
+        name: "Real Madrid",
+        country: "Spain",
+        players: "Kylian Mbappe, Jude Bellingham",
+        photo: "Kylian Mbappé",
+        description: "One of the most successful football clubs in history.",
+        website: "https://www.realmadrid.com/"
+    },
+
+    {
+        name: "FC Barcelona",
+        country: "Spain",
+        players: "Lamine Yamal, Raphinha",
+        photo: "Lamine Yamal",
+        description: "Famous for attacking football and its academy.",
+        website: "https://www.fcbarcelona.com/"
+    },
+
+    {
+        name: "Manchester City",
+        country: "England",
+        players: "Erling Haaland, Phil Foden",
+        photo: "Erling Haaland",
+        description: "Known for possession-based football.",
+        website: "https://www.mancity.com/"
+    },
+
+    {
+        name: "Liverpool FC",
+        country: "England",
+        players: "Mohamed Salah, Virgil van Dijk",
+        photo: "Mohamed Salah",
+        description: "A historic club with passionate supporters.",
+        website: "https://www.liverpoolfc.com/"
+    },
+
+    {
+        name: "Manchester United",
+        country: "England",
+        players: "Bruno Fernandes, Matheus Cunha",
+        photo: "Bruno Fernandes",
+        description: "One of the world's most recognised clubs.",
+        website: "https://www.manutd.com/"
+    },
+
+    {
+        name: "Paris Saint-Germain",
+        country: "France",
+        players: "Ousmane Dembele, Khvicha Kvaratskhelia",
+        photo: "Ousmane Dembélé",
+        description: "A leading football club from Paris.",
+        website: "https://www.psg.fr/"
+    }
+
+];
+
+
+// DISPLAY TEAMS
+
+const teamContainer =
+document.getElementById("team-container");
+
+teams.forEach((team, index) => {
+
+    teamContainer.innerHTML += `
+
+        <div class="team-card">
+
+            <img id="player-${index}"
+            src="https://placehold.co/400x250?text=Loading+Photo"
+            alt="${team.photo}">
+
+            <h3>${team.name}</h3>
+
+            <p><b>Country:</b> ${team.country}</p>
+
+            <p><b>Star Players:</b> ${team.players}</p>
+
+            <p>${team.description}</p>
+
+            <button onclick="showTeam(${index})">
+
+                Know More
+
+            </button>
+
+        </div>
+
+    `;
+
+});
+
+
+// LOAD PLAYER PHOTOS
+
+async function loadPlayerPhoto(player, imageId) {
+
+    try {
+
+        const response = await fetch(
+            "https://en.wikipedia.org/api/rest_v1/page/summary/"
+            + encodeURIComponent(player)
+        );
+
+        const data = await response.json();
+
+        if (data.thumbnail) {
+
+            document.getElementById(imageId).src =
+            data.thumbnail.source;
+
+        }
+
+    }
+
+    catch(error) {
+
+        console.log("Photo could not be loaded");
+
+    }
+
+}
+
+
+teams.forEach((team, index) => {
+
+    loadPlayerPhoto(team.photo, "player-" + index);
+
+});
+
+
+// KNOW MORE BUTTON - OPEN OFFICIAL CLUB WEBSITE
+
+function showTeam(index) {
+
+    const team = teams[index];
+
+    window.open(
+        team.website,
+        "_blank",
+        "noopener,noreferrer"
+    );
+
+}
+
+
+// RECENT MATCHES - NOVEMBER 2026
+
+const recentMatches = [
+
+    {
+        home: "AEK Athens",
+        away: "Real Madrid",
+        score: "2 - 3",
+        date: "4 November 2026",
+        competition: "Champions League"
+    },
+
+    {
+        home: "Fenerbahce",
+        away: "Liverpool",
+        score: "3 - 2",
+        date: "4 November 2026",
+        competition: "Champions League"
+    },
+
+    {
+        home: "Leipzig",
+        away: "Manchester City",
+        score: "2 - 3",
+        date: "4 November 2026",
+        competition: "Champions League"
+    },
+
+    {
+        home: "Manchester United",
+        away: "Roma",
+        score: "3 - 2",
+        date: "3 November 2026",
+        competition: "Champions League"
+    },
+
+    {
+        home: "Villarreal",
+        away: "PSG",
+        score: "0 - 6",
+        date: "3 November 2026",
+        competition: "Champions League"
+    },
+
+    {
+        home: "Barcelona",
+        away: "Aston Villa",
+        score: "3 - 0",
+        date: "3 November 2026",
+        competition: "Champions League"
+    }
+
+];
+
+
+// DISPLAY RECENT MATCHES
+
+const recentContainer =
+document.getElementById("recent-container");
+
+recentMatches.forEach(match => {
+
+    recentContainer.innerHTML += `
+
+        <div class="match-card">
+
+            <h3>${match.home} vs ${match.away}</h3>
+
+            <h2>${match.score}</h2>
+
+            <p><b>Date:</b> ${match.date}</p>
+
+            <p>${match.competition}</p>
+
+            <span class="status">COMPLETED</span>
+
+        </div>
+
+    `;
+
+});
+
+
+// UPCOMING MATCHES - NOVEMBER 2026
+
+const upcomingMatches = [
+
+    {
+        home: "Manchester City",
+        away: "Napoli",
+        date: "24 November 2026",
+        time: "9:00 PM CET"
+    },
+
+    {
+        home: "Real Madrid",
+        away: "PSV Eindhoven",
+        date: "24 November 2026",
+        time: "9:00 PM CET"
+    },
+
+    {
+        home: "Barcelona",
+        away: "Sabah",
+        date: "25 November 2026",
+        time: "6:45 PM CET"
+    },
+
+    {
+        home: "Club Brugge",
+        away: "Liverpool",
+        date: "25 November 2026",
+        time: "9:00 PM CET"
+    },
+
+    {
+        home: "PSG",
+        away: "Roma",
+        date: "25 November 2026",
+        time: "9:00 PM CET"
+    },
+
+    {
+        home: "Sporting CP",
+        away: "Manchester United",
+        date: "25 November 2026",
+        time: "9:00 PM CET"
+    }
+
+];
+
+
+// DISPLAY UPCOMING MATCHES
+
+const upcomingContainer =
+document.getElementById("upcoming-container");
+
+upcomingMatches.forEach(match => {
+
+    upcomingContainer.innerHTML += `
+
+        <div class="match-card upcoming">
+
+            <h3>${match.home} vs ${match.away}</h3>
+
+            <p><b>Date:</b> ${match.date}</p>
+
+            <p><b>Time:</b> ${match.time}</p>
+
+            <p>UEFA Champions League</p>
+
+            <span class="status">UPCOMING</span>
+
+        </div>
+
+    `;
+
+});
+
+</script>
+
+</body>
+</html>
